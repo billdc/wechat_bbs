@@ -1,16 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="js/jquery.mobile-1.4.2.min.css">
-<link rel="stylesheet" href="themes/gray.css">
-<script src="js/jquery.js"></script>
-<script src="js/jquery.mobile-1.4.2.js"></script>
+  <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="{{STATIC_URL}}js/jquery.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.validate.js"></script>
 </head>
 <body>
 
 <div data-role="page" id="pageone">
     <div data-role="header">
-        <h1>首页</h1>
+      <h1>首页</h1>
+      <a href="/upload" class="ui-btn-right ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-right ui-icon-home">发布信息</a>
         <div data-role="navbar">
             <ul>
                 <li><a href="#" data-icon="home">租房信息</a></li>
@@ -19,33 +22,28 @@
             </ul>
         </div>
     </div>
-    <div data-role="content">
+    <div data-role="content"  data-ajax="false">
 
         <ul data-role="listview">
             <li data-role="list-divider">
                 6月21日 发布信息
                 <div class="ui-li-count">20</div>
             </li>
-            <li>
-                <a href="#">
-                    <h3>陆家嘴-出租房屋</h3>
-                    <p>[图]粮食一听--1800元，有图片</p>
-                    <p class="ui-li-aside">发布时间:6-21 14:00</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h3>张江-二手物品</h3>
-                    <p id="no-ellipsis">[图]1800--全新自行车转让...,有图片</p>
-                    <p class="ui-li-aside">发布时间:6-21 14:00</p>
-                </a>
-            </li>
+          {% for item in house %}
+          <li>
+            <a href="/house_detail/{{ item.id }}">
+              <h3>{{ item.dist }} - {{ item.category }}</h3>
+              <p>{{ item.room }} - {{ item.price }} - {{ item.note }}</p>
+              <p class="ui-li-aside"> {{ item.timestamp }}</p>
+            </a>
+          </li>
+          {% endfor %}
         </ul>
 
     </div>
 
     <div data-role="footer">
-        <h1>Powered by Ne0</h1>
+        <h1>微网站</h1>
     </div>
 </div>
 </body>

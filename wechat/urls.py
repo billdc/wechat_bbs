@@ -1,7 +1,12 @@
 from django.conf.urls import patterns, include, url
-
+from django.views.generic import TemplateView
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+import send_zufang
+import show_index
+from show_house import house_detail
+from chat_room import chatroom
+from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -14,4 +19,19 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^send_house/$',send_zufang.get_post),
+    url(r'^$',show_index.show_index),
+    url(r'^house_detail/(\d+)/$',house_detail),
+    url(r'^chatroom/$',chatroom),
+    url(r'^chat/', include('djangoChat.urls')),
+    #url(r'^house_detail/(\d+)/$',house_detail),
+)
+urlpatterns += patterns('django.views.generic.simple',
+    (r'^upload/$',TemplateView.as_view(template_name="upload_all.html")),
+    (r'^upload_house/$',TemplateView.as_view(template_name="upload_house.html")),
+)
+
+urlpatterns += patterns('',
+(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes':True}),
+(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes':True}),
 )

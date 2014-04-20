@@ -1,0 +1,31 @@
+<html>
+<head>
+  <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="{{STATIC_URL}}js/jquery.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.validate.js"></script>
+  <meta charset="UTF-8">
+  <title>登陆</title>
+</head>
+<body>
+<div data-role="page" id="pageone">
+    <div data-role="header">
+      <h1>群聊</h1>
+      <a href="/chat/register" class="ui-btn-right ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-right ui-icon-home">注册</a>
+    </div>
+  <div class="container" style="max-width:400px">
+    <form method="post" class="form-signin" data-ajax="false">
+      {% csrf_token %}
+      <h2 class="form-signin-heading">请输入昵称</h2>
+      <input type="text" name="username" class="form-control" placeholder="username" autofocus>
+      <input type="password" name="password" class="form-control" placeholder="Password">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+    </form>
+    <p>{{error}}</p>
+    <a href="/chat/register">注册</a>
+  </div> <!-- /container -->
+</div>
+</body>
+</html>

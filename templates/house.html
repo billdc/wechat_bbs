@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="{{STATIC_URL}}js/jquery.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.validate.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+    <div data-role="header">
+      <a href="/" class="ui-btn-left ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-left ui-icon-home">主页</a>
+        <h1>{{ house.dist }} - {{ house.category }}</h1>
+      <a href="/upload" class="ui-btn-right ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-right ui-icon-home">发布信息</a>
+    </div>
+    <div data-role="content">
+
+      <p>房屋类型 : <span class="house_detail">{{ house.room }}</span> </p>
+      <p>房屋价格 : <span class="house_detail">{{ house.price }}</span></p>
+      {% if house.note %}
+      <p>介绍 : <span class="house_detail">{{ house.note }}</span></p>
+      {% endif %}
+
+      {% if house.pic %}
+      <p><img src="/media/{{ house.pic }}"/></p>
+      {% endif %}
+      {% if house.pic2 %}
+      <p><img src="/media/{{ house.pic2 }}"/></p>
+      {% endif %}
+      {% if house.pic3 %}
+      <p><img src="/media/{{ house.pic3 }}"/></p>
+      {% endif %}
+      <p class="ui-li-aside house_time"> 发布时间：{{ house.timestamp |  date:"m月d日 H:i" }}</p>
+    </div>
+
+    <div data-role="footer">
+        <h1>微网站</h1>
+    </div>
+</div>
+</body>
+</html>

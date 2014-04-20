@@ -1,117 +1,171 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="js/jquery.mobile-1.4.2.min.css">
-	<link rel="stylesheet" href="themes/gray.css">
-
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery.mobile-1.4.2.js"></script>
+  <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="{{STATIC_URL}}js/jquery.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.validate.js"></script>
 </head>
 <body>
-
-<div data-role="page" id="pageone">
-	<div data-role="header" >
-		<h1>租房信息</h1>
+  
+  <div data-role="page" id="pageone">
+    <div data-role="header" >
+      <h1>租房信息</h1>
+      <a href="/" class="ui-btn-left ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-left ui-icon-home">首页</a>
+    </div>
+    <div data-role="content">
+      <div data-role="tabs" id="tabs">
+	<div data-role="navbar">
+	  <ul>
+	    <li><a href="#one" data-ajax="false" class="ui-btn-active">出租信息</a></li>
+	    <li><a href="#two" data-ajax="false">求租信息</a></li>
+	  </ul>
 	</div>
-	<div data-role="content">
-		<div data-role="tabs" id="tabs">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#one" data-ajax="false" class="ui-btn-active">出租信息</a></li>
-					<li><a href="#two" data-ajax="false">求租信息</a></li>
-				</ul>
-			</div>
-			<div id="one" class="ui-body-d ui-content">
-				<h3>房屋出租</h3>
-				<form method="post" action="demoform.asp">
-					<fieldset data-role="fieldcontain">
-						<label for="fname" >姓名：</label>
-						<input type="text" name="fname" id="fname" placeholder="姓名...">
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >电话号码：</label>
-						<input type="text" name="fphone" id="fphone" placeholder="电话号码...">
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >区域：</label>
-						<select name="dist" id="dist">
-							<option value="lujiazui">陆家嘴</option>
-							<option value="zhangjiang">张江</option>
-							<option value="pudong">浦东</option>
-						</select>
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >地址：</label>
-						<input type="text" name="fphone" id="fphone" placeholder="电话号码...">
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >价格：</label>
-						<input type="text" name="fphone" id="fphone" placeholder="电话号码...">
-					</fieldset>
-					<label for="fphone" >备注：</label>
-					<textarea rows="5" name="textarea" id="textarea" data-mini="false" placeholder="备注..."></textarea>
-					<fieldset data-role="fieldcontain">
-						<label for="file">图片:</label>
-						<input type="file" name="file" id="file" value="">
-					</fieldset>
-					<a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-b">提交信息</a>
-					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
-						<div data-role="header" data-theme="a">
-							<h1>确认提交?</h1>
-						</div>
-						<div role="main" class="ui-content">
-							<h3 class="ui-title">你确认信息正确，并且提交到社区么?</h3>
-							<p>发送之后无法修改.</p>
-							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">取消</a>
-							<input type="submit" data-inline="true" value="提交">
-						</div>
-					</div>
-				</form>
-			</div>
-
-			<div id="two" class="ui-body-d ui-content">
-				<h3>求租房屋</h3>
-				<form method="post" action="demoform.asp">
-					<fieldset data-role="fieldcontain">
-						<label for="fname" >姓名：</label>
-						<input type="text" name="fname" id="fname" placeholder="姓名...">
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >电话号码：</label>
-						<input type="text" name="fphone" id="fphone" placeholder="电话号码...">
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >区域：</label>
-						<select name="dist" id="dist">
-							<option value="lujiazui">陆家嘴</option>
-							<option value="zhangjiang">张江</option>
-							<option value="pudong">浦东</option>
-						</select>
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >地址：</label>
-						<input type="text" name="fphone" id="fphone" placeholder="电话号码...">
-					</fieldset>
-					<fieldset data-role="fieldcontain">
-						<label for="fphone" >价格：</label>
-						<input type="text" name="fphone" id="fphone" placeholder="电话号码...">
-					</fieldset>
-					<label for="fphone" >备注：</label>
-					<textarea rows="5" name="textarea" id="textarea" data-mini="false" placeholder="备注..."></textarea>
-					<input type="submit" data-inline="true" value="提交">
-				</form>
-			</div>
-
-
-		</div>
-
-
+	<div id="one" class="ui-body-d ui-content">
+	  <h3>房屋出租</h3>
+          
+          
+	  <form id="chuzu" method="post" action="/send_house/" data-ajax="false" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    <fieldset data-role="fieldcontain">
+	      <label for="name" >姓名：</label>
+	      <input type="text" name="name" id="name" placeholder="姓名...">
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="phone" >电话号码：</label>
+	      <input type="text" name="phone" id="phone" placeholder="电话号码...">
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="dist" >区域：</label>
+	      <select name="dist" id="dist">
+          <option value="陆家嘴">陆家嘴</option>
+          <option value="张江">张江</option>
+          <option value="浦东">浦东</option>
+	      </select>
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="addr" >地址：</label>
+	      <input type="text" name="addr" id="addr" placeholder="地址...">
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="price" >价格：</label>
+	      <input type="text" name="price" id="price" placeholder="价格...">
+	    </fieldset>
+            <fieldset data-role="fieldcontain">
+	      <label for="room" >房屋类型：</label>
+	      <input type="text" name="room" id="room" placeholder="几室几厅...">
+	    </fieldset>
+	    <label for="note" >备注：</label>
+	    <textarea rows="5" name="note" id="note" data-mini="false" placeholder="备注..."></textarea>
+	    <fieldset data-role="fieldcontain" id="upload_img">
+	      <label for="img1">图片:</label>
+	      <input type="file" name="img1" id="img1" value="">
+	    </fieldset>
+	    <a href="#" data-role="button" id="add_img">增加图片</a>
+            <input type="hidden" name="category" value="出租房" />
+	    <input type="submit" data-inline="true" value="提交" >
+	  </form>
 	</div>
-
-	<div data-role="footer">
-		<h1>在此处插入页脚文本</h1>
+        
+	<div id="two" class="ui-body-d ui-content">
+	  <h3>求租房屋</h3>
+	  <form method="post" action="demoform.asp">
+	    <fieldset data-role="fieldcontain">
+	      <label for="qname" >姓名：</label>
+	      <input type="text" name="qname" id="qname" placeholder="姓名...">
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="qphone" >电话号码：</label>
+	      <input type="text" name="qphone" id="qphone" placeholder="电话号码...">
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="qdist" >区域：</label>
+	      <select name="qdist" id="qdist">
+		<option value="lujiazui">陆家嘴</option>
+		<option value="zhangjiang">张江</option>
+		<option value="pudong">浦东</option>
+	      </select>
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="qaddr" >地址：</label>
+	      <input type="text" name="qaddr" id="qaddr" placeholder="电话号码...">
+	    </fieldset>
+	    <fieldset data-role="fieldcontain">
+	      <label for="qprice" >价格：</label>
+	      <input type="text" name="qprice" id="qprice" placeholder="电话号码...">
+	    </fieldset>
+	    <label for="qps" >备注：</label>
+	    <textarea rows="5" name="qps" id="qps" data-mini="false" placeholder="备注..."></textarea>
+	    <input type="submit" data-inline="true" value="提交">
+	  </form>
 	</div>
-
-</div>
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    <div data-role="footer">
+      <h1>在此处插入页脚文本</h1>
+    </div>
+    
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        var i;
+        i=1;
+        $("#add_img").click(function(){
+            if (i<3){
+                after_content="#img"+i;
+                j=i+1;
+                content='<input type="file" name="img'+j+'" id="img' +  j + '" value="">';
+                $(after_content).after(content);
+                i=i+1;
+            }else{
+                alert("最多上传3张照片!");
+            };
+        });
+        $("#chuzu").validate({
+            rules: {  
+                name: {  
+                    required: true,  
+                    minlength: 2  
+                },  
+                room: {
+                    required: true,
+                    minlength: 2
+                },
+                phone: {
+                    required: true,
+                    digits: true,
+                    minlength:11,
+                    maxlength:11,
+                },
+                addr: {
+                    required: true,  
+                    minlength: 5
+                },
+                price: "required"  
+            },  
+            messages: {  
+                name: {  
+                    required: '请输入姓名',  
+                    minlength: '请至少输入两个字符',
+                },  
+                phone: {  
+                    required: '请输入手机号码',  
+                    minlength: '请检查您的手机号',
+                    maxlength: '请检查您的手机号',
+                },  
+                price: '请检查价格',  
+                addr: '请输入您的地址',
+                room:'请输入房屋类型',
+            }  
+        });
+    });
+  </script>
 </body>
 </html>
