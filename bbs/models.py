@@ -80,4 +80,9 @@ class CarShare(models.Model):
     phone = models.CharField('电话',max_length=20)
     from_addr = models.CharField('起点',max_length=100)
     to_addr = models.CharField('终点',max_length=100)
+    start_time = models.CharField('出发时间',max_length=100)
     note = models.TextField('备注',null=True,blank=True)
+
+    class Meta:
+        verbose_name = "拼车信息"
+        verbose_name_plural = "拼车信息"

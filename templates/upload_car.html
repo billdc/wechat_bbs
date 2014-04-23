@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="{{STATIC_URL}}js/jquery.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.validate.js"></script>
+</head>
+<body>
+  
+  <div data-role="page" id="pageone">
+    <div data-role="header" >
+      <h1>拼车信息</h1>
+      <a href="/" class="ui-btn-left ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-left ui-icon-home">首页</a>
+    </div>
+    <div data-role="content">
+      <h3>拼车信息</h3>
+      <form id="pinche" method="post" action="/send_car/" data-ajax="false" enctype="multipart/form-data">
+	{% csrf_token %}
+	<fieldset data-role="fieldcontain">
+	  <label for="name" >姓名：</label>
+	    <input type="text" name="name" id="name" placeholder="姓名...">
+	</fieldset>
+	<fieldset data-role="fieldcontain">
+	  <label for="phone" >电话号码：</label>
+	  <input type="text" name="phone" id="phone" placeholder="电话号码...">
+	    </fieldset>
+	<fieldset data-role="fieldcontain">
+	  <label for="from_addr" >出发地：</label>
+	  <input type="text" name="from_addr" id="from_addr" placeholder="出发地...">
+	</fieldset>
+	<fieldset data-role="fieldcontain">
+	  <label for="to_addr" >目的地：</label>
+	  <input type="text" name="to_addr" id="to_addr" placeholder="目的地...">
+	</fieldset>
+        <fieldset data-role="fieldcontain">
+	  <label for="start_time" >出发时间：</label>
+	  <input type="text" name="start_time" id="start_time" placeholder="出发时间...">
+	</fieldset>
+	<label for="note" >备注：</label>
+	<textarea rows="5" name="note" id="note" data-mini="false" placeholder="备注..."></textarea>
+	<input type="submit" data-inline="true" value="提交" >
+      </form>
+    </div>
+    <div data-role="footer">
+      <h1>在此处插入页脚文本</h1>
+    </div>
+    
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("#pinche").validate({
+            rules: {  
+                name: {  
+                    required: true,  
+                    minlength: 2  
+                },  
+                phone: {
+                    required: true,
+                    digits: true,
+                    minlength:11,
+                    maxlength:11,
+                },
+                to_addr: "required",
+                from_addr: "required",
+                start_time: "required"
+            },  
+            messages: {  
+                name: {  
+                    required: '请输入姓名',  
+                    minlength: '请至少输入两个字符',
+                },  
+                phone: {  
+                    required: '请输入手机号码',  
+                    minlength: '请检查您的手机号',
+                    maxlength: '请检查您的手机号',
+                },  
+                from_addr: '请输入出发地',  
+                to_addr: '请输入目的地',
+                start_time: '请输入出发时间',
+            }  
+        });
+    });
+  </script>
+</body>
+</html>
