@@ -8,9 +8,9 @@ body {
 }
 .chatBox {
   position: absolute;
-  top: 0;
   left: 0;
   width: 100%;
+  margin-top:45px;
 }
 .chatBox .chatMsgs {
   margin-bottom: 100px;
@@ -89,7 +89,7 @@ body {
   z-index: 6;
   width: 100%;
   background-color: #4D4D4D;
-  height: 75px;
+  height: 51px;
   box-shadow: 0px -2px 10px 1px #555555;
 }
 .input-area img {
@@ -104,12 +104,12 @@ body {
   resize: none;
   border: none;
   margin: 5px;
-  height: 64px;
+  height: 40px;
 }
 .input-area .submit {
   float: left;
   width: 20%;
-  height: 64px;
+  height: 40px;
   margin: 5px 0 5px 0;
 }
 #footer {
@@ -125,7 +125,7 @@ body {
   background-color: #4D4D4D;
   top: 0;
   box-shadow: 0 -2px 10px 1px #555555;
-  height: 3em;
+  height: 40px;
   position: fixed;
   width: 100%;
   z-index: 6;

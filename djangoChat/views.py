@@ -73,7 +73,7 @@ def chat_api(request):
         data = json.dumps(res)
         return HttpResponse(data, content_type="application/json")
     # get request
-    r = Message.objects.order_by('-time')[:10]
+    r = Message.objects.order_by('-time')[:5]
     res = []
     for msgs in reversed(r):
         res.append({'id': msgs.id, 'user': msgs.user, 'msg': msgs.message,
