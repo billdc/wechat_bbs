@@ -16,7 +16,7 @@
       <a href="/upload" class="ui-btn-right ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-right ui-icon-home">发布信息</a>
         <div data-role="navbar" data-ajax="false">
             <ul>
-                <li><a href="#" data-icon="home">最新消息</a></li>
+                <li><a href="#" data-icon="home">生活信息</a></li>
                 <li><a href="/chat" data-icon="home" data-ajax="false">群聊</a></li>
                 <li><a href="#" data-icon="home" >商家信息</a></li>
             </ul>
@@ -25,9 +25,9 @@
     <div data-role="content"  data-ajax="false">
 
         <ul data-role="listview">
-            <li data-role="list-divider">
-                6月21日 发布信息
-                <div class="ui-li-count">20</div>
+          <li data-role="list-divider">
+            今天发布的 租房信息 , 点击“生活信息”查看更多消息。
+            <div class="ui-li-count">{{ count_house }}</div>
             </li>
           {% for item in house %}
           <li>
@@ -39,6 +39,22 @@
           </li>
           {% endfor %}
         </ul>
+        <ul data-role="listview">
+          <li data-role="list-divider">
+            今天发布的 二手物品信息 , 点击“生活信息”查看更多消息。
+            <div class="ui-li-count">{{ count_goods }}</div>
+            </li>
+          {% for item in goods %}
+          <li>
+            <a href="/house_detail/{{ item.id }}">
+              <h3>{{ item.goods_name }} - {{ item.category }}</h3>
+              <p>{{ item.goods_dist }} - {{ item.price }} - {{ item.note }}</p>
+              <p class="ui-li-aside"> {{ item.timestamp }}</p>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        
 
     </div>
 

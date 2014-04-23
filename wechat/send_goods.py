@@ -2,9 +2,9 @@
 import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse
-from bbs.models import House
+from bbs.models import Goods
 import Image as image
-
+import re
 from django.core.context_processors import csrf
 
 def get_value(req,request):
@@ -14,29 +14,31 @@ def get_value(req,request):
         return ""
 
 def resizeImg(img):
-    new_img = image.open(img)
-    img_width,img_height = new_img.size
-    if (img_width > 200 ):
-        tempfile_io =StringIO.StringIO()
-        ratio = 200.0/float(img_width)
-        new_img_width = int(img_width * ratio)
-        new_img_height = int(img_height * ratio)
-        new_img.resize((new_img_width,new_img_height),image.ANTIALIAS).save(tempfile_io,format="png",quality=90)
-        image_file = InMemoryUploadedFile(tempfile_io, None, "upload.jpg",'image/jpeg',tempfile_io.len, None)
-        return image_file
-    return img
+    if re.search(r'.+(\.jpg$)|(\.JPEG$)|(\.JPG$)|(\.jpeg$)|(\.png$)|(\.gif$)|(\.bmp$)',img.name):
+        new_img = image.open(img)
+        img_width,img_height = new_img.size
+        if (img_width > 200 ):
+            tempfile_io =StringIO.StringIO()
+            ratio = 200.0/float(img_width)
+            new_img_width = int(img_width * ratio)
+            new_img_height = int(img_height * ratio)
+            new_img.resize((new_img_width,new_img_height),image.ANTIALIAS).save(tempfile_io,format="png",quality=90)
+            image_file = InMemoryUploadedFile(tempfile_io, None, "upload.jpg",'image/jpeg',tempfile_io.len, None)
+            return image_file
+        return img
+    else:
+        return ""
 
-def get_post(request):
+def get_zhuanrang(request):
     post_data="no post"
     if request.method == 'POST':
         name = get_value("name",request)
         phone = get_value("phone",request)
-        addr = get_value("addr",request)
         dist = get_value("dist",request)
         price = get_value("price",request)
         note = get_value("note",request)
-        room = get_value("room",request)
         category = get_value("category",request)
+        goods_name = get_value("goods_name",request)
         if 'img1' in request.FILES:
             img1 = request.FILES["img1"]
             new_img1 = resizeImg(img1)
@@ -55,75 +57,52 @@ def get_post(request):
         else:
             new_img3=None
 
-        house = House(
+        goods = Goods(
                 name = name,
-                room = room,
                 category = category,
+                goods_name = goods_name,
                 phone = phone,
                 dist = dist,
-                addr = addr,
                 pic = new_img1,
                 pic2 = new_img2,
                 pic3 = new_img3,
                 price = price,
                 note = note,
         )
-        house.save()
+        goods.save()
 
     post_data="""
     <!DOCTYPE html>
     <html>
     <head>
-    <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
-    <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
-    <script src="{{STATIC_URL}}js/jquery.js"></script>
-    <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     </head>
     <body>
-
-    <div data-role="page" id="pageone">
-      <div data-role="header">
-        <h1>发布信息</h1>
-        <a href="/" class="ui-btn-left ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-left ui-icon-home">首页</a>
-      </div>
-
-      <div data-role="content">
-      提交成功！请等待审核后发布！
-      </div>
-
-      <div data-role="footer">
-        <h1>在此处插入页脚文本</h1>
-      </div>
-
-
+    提交成功！请等待审核后发布！
     </div>
     </body>
     </html>
     """
     return HttpResponse(post_data)
 
-def get_qiuzu(request):
+def get_qiugou(request):
     post_data=request.POST
     if request.method == 'POST':
         name = get_value("qname",request)
         phone = get_value("qphone",request)
-        addr = get_value("qaddr",request)
+        goods_name = get_value("qgoods_name",request)
         dist = get_value("qdist",request)
         price = get_value("qprice",request)
         note = get_value("qnote",request)
-        room = get_value("qroom",request)
         category = get_value("category",request)
-        house = House(
+        goods = Goods(
                 name = name,
-                room = room,
                 category = category,
+                goods_name = goods_name,
                 phone = phone,
                 dist = dist,
-                addr = addr,
                 price = price,
                 note = note,
         )
-        house.save()
+        goods.save()
 
-    return HttpResponse(post_data)
+    return HttpResponse("chenggong")
