@@ -61,7 +61,7 @@
             </li>
           {% for item in cars %}
           <li>
-            <a href="/goods_detail/{{ item.id }}">
+            <a href="/car_detail/{{ item.id }}">
               <h3>{{ item.from_addr }} - {{ item.to_addr }}</h3>
               <p>出发时间 : {{ item.start_time }} - {{ item.note }}</p>
               <p class="ui-li-aside"> {{ item.timestamp }}</p>
@@ -76,5 +76,9 @@
         <h1>微网站</h1>
     </div>
 </div>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+  document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc91656ddcfbb2fce02fa06f807bed7ab' type='text/javascript'%3E%3C/script%3E"));
+</script>
 </body>
 </html>

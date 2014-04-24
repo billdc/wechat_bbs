@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}themes/gray.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="{{STATIC_URL}}js/jquery.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.mobile-1.4.2.min.js"></script>
+  <script src="{{STATIC_URL}}js/jquery.validate.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+    <div data-role="header">
+      <a href="/" class="ui-btn-left ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-left ui-icon-home">主页</a>
+        <h1>拼车信息</h1>
+      <a href="/upload" class="ui-btn-right ui-btn ui-btn-inline  ui-corner-all ui-btn-icon-right ui-icon-home">发布信息</a>
+    </div>
+    <div data-role="content">
+      <p>出发地 : <span class="house_detail">{{ car.from_addr }}</span> </p>
+      <p>目的地 : <span class="house_detail">{{ car.to_addr }}</span></p>
+      <p>出发时间 : <span class="house_detail">{{ car.start_time }}</span></p>
+      <p>发布者 : <span class="house_detail">{{ car.name }}</span></p>
+      <p>联系电话 : <span class="house_detail">{{ car.phone }}</span></p>
+      {% if car.note %}
+      <p>备注 : <span class="house_detail">{{ car.note }}</span></p>
+      {% endif %}
+      <p class="ui-li-aside house_time"> 发布时间：{{ car.timestamp |  date:"m月d日 H:i" }}</p>
+    </div>
+    <div data-role="footer">
+        <h1>微网站</h1>
+    </div>
+</div>
+</body>
+</html>

@@ -6,6 +6,7 @@ import send_zufang
 import send_goods
 import show_index
 import send_car
+from show_car import car_detail
 from show_goods import goods_detail
 from show_house import house_detail
 from chat_room import chatroom
@@ -30,6 +31,7 @@ urlpatterns = patterns('',
     url(r'^$',show_index.show_index,name="show_index"),
     url(r'^house_detail/(\d+)/$',house_detail),
     url(r'^goods_detail/(\d+)/$',goods_detail),
+    url(r'^car_detail/(\d+)/$',car_detail),
     url(r'^chatroom/$',chatroom),
     url(r'^chat/', include('djangoChat.urls')),
     #url(r'^house_detail/(\d+)/$',house_detail),
